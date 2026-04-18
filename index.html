@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Pruskowski — Brand Strategy & Omnichannel Leadership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F7E8E1;
+      --bg2:      #EFEDE8;
+      --text:     #111111;
+      --muted:    rgba(17,17,17,0.42);
+      --rule:     rgba(17,17,17,0.13);
+      --orange:   #D4849C;
+      --orange2:  #E4A5B8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 52px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo svg { flex-shrink: 0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s;
+      border-radius: 1px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .nav-menu {
+      display: none;
+      position: fixed;
+      top: 52px;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      flex-direction: column;
+      z-index: 99;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .nav-menu.active {
+      display: flex;
+    }
+
+    .nav-menu a {
+      padding: 1rem 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding-top: 52px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 2rem 2rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-index {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .hero-headline-wrap {
+      padding: 14rem 2rem 3rem;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5rem, 12.5vw, 13rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-cell {
+      padding: 1.75rem 2rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-cell:last-child { border-right: none; }
+
+    .hero-cell-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-cell-value {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.4rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--bg2);
+      color: var(--text);
+    }
+
+    .btn-fill {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+    }
+
+    .btn-fill:hover {
+      background: var(--orange2);
+      border-color: var(--orange2);
+      color: #fff;
+    }
+
+    .btn-white {
+      background: transparent;
+      border-color: rgba(255,255,255,0.4);
+      color: #fff;
+    }
+
+    .btn-white:hover {
+      background: #fff;
+      border-color: #fff;
+      color: var(--text);
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.85rem 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 32s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 3rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .dot {
+      width: 3px;
+      height: 3px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--orange);
+    }
+
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .section-tag-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ─── APPROACH ─── */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .approach-left {
+      padding: 3.5rem 2rem;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .approach-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .approach-heading em { font-style: italic; }
+
+    .approach-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .approach-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pillar {
+      padding: 3rem 2rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s;
+    }
+
+    .pillar:nth-child(2n) { border-right: none; }
+    .pillar:nth-child(3),
+    .pillar:nth-child(4) { border-bottom: none; }
+    .pillar:hover { background: rgba(255, 255, 255, 0.4); }
+
+    .pillar-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      margin-bottom: 2rem;
+    }
+
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pillar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, gap 0.15s;
+      padding-bottom: 1px;
+    }
+
+    .pillar-link:hover { border-color: var(--orange); gap: 0.55rem; }
+
+    /* ─── SERVICES ─── */
+    .services-head {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .services-head-left {
+      padding: 3.5rem 2rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .services-head-right {
+      padding: 3.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .services-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .services-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .service {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--rule);
+      transition: background 0.2s;
+    }
+
+    .service:last-child { border-right: none; }
+    .service:hover { background: rgba(255, 255, 255, 0.4); }
+
+    .service-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      margin-bottom: 1.75rem;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── THOUGHT LEADERSHIP ─── */
+    #thought-leadership {
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 3rem;
+    }
+
+    .tl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 3rem 2rem;
+    }
+
+    .tl-content {
+      padding: 2rem 0;
+    }
+
+    .tl-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .tl-heading em {
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .tl-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+
+    .tl-image {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .tl-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background-color: var(--orange);
+      background-image:
+        linear-gradient(rgba(190,60,130,0.88), rgba(190,60,130,0.88)),
+        url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=85&fit=crop');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cta-band-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 2rem;
+    }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 8rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+
+    .cta-heading em {
+      font-style: italic;
+      opacity: 0.75;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 200px;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-left {
+      padding: 3.5rem 2rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    .contact-heading em { font-style: italic; }
+
+    .contact-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      align-items: baseline;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .contact-row-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .contact-row-val {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    a.contact-row-val:hover { color: var(--orange); }
+
+    .contact-right {
+      padding: 3.5rem 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .form-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .form-input,
+    .form-textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(17,17,17,0.2);
+      font-weight: 400;
+    }
+
+    .form-textarea { resize: none; height: 80px; }
+
+    .form-footer {
+      padding-top: 2rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      display: grid;
+      grid-template-columns: 320px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.25rem 2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .footer-tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    /* ─── CLIENTS ─── */
+    .clients-strip {
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 0;
+    }
+
+    .clients-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: max-content;
+      animation: marquee-clients 24s linear infinite;
+    }
+
+    @keyframes marquee-clients {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    .client-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(17,17,17,0.13);
+      white-space: nowrap;
+      padding: 0 3.5rem;
+      transition: color 0.2s;
+    }
+
+    .client-name:hover { color: rgba(17,17,17,0.35); }
+
+    /* ─── ICONS ─── */
+    .icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: 22px;
+      font-weight: normal;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      font-feature-settings: 'liga';
+      font-variant-ligatures: normal;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 1.25rem;
+      user-select: none;
+    }
+
+    .icon-sm {
+      font-family: 'Material Symbols Outlined';
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      font-feature-settings: 'liga';
+      font-variant-ligatures: normal;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 18;
+      color: var(--orange);
+      vertical-align: middle;
+      margin-right: 0.4rem;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.07s; }
+    .d2 { transition-delay: 0.14s; }
+    .d3 { transition-delay: 0.21s; }
+    .d4 { transition-delay: 0.28s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .approach-grid,
+      .services-head,
+      .contact-grid,
+      .tl-grid { grid-template-columns: 1fr; }
+
+      .approach-left,
+      .services-head-left,
+      .contact-left {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .approach-right { grid-template-columns: 1fr 1fr; }
+      .pillar:nth-child(2) { border-right: none; }
+      .pillar:nth-child(3) { border-bottom: 1px solid var(--rule); }
+
+      .services-list { grid-template-columns: 1fr 1fr; }
+      .service:nth-child(2) { border-right: none; }
+      .service:nth-child(1),
+      .service:nth-child(2) { border-bottom: 1px solid var(--rule); }
+
+      .hero-footer { grid-template-columns: 1fr; }
+      .hero-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-cell:last-child { border-bottom: none; }
+
+      .tl-image { order: -1; }
+
+      .cta-band-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      footer { grid-template-columns: 1fr 1fr; }
+
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .hero-headline-wrap { padding: 2.5rem 1.25rem 3rem; }
+      .hero-top { padding: 1.5rem 1.25rem 0; }
+      .hero-cell { padding: 1.5rem 1.25rem; }
+      .approach-left,
+      .services-head-left,
+      .services-head-right,
+      .contact-left,
+      .contact-right { padding: 2.5rem 1.25rem; }
+      .pillar,
+      .service { padding: 2rem 1.25rem; }
+      .cta-band-inner { padding: 3.5rem 1.25rem; }
+      .section-row { padding: 1rem 1.25rem; }
+      footer { padding: 1.25rem; }
+    }
+
+    @media (max-width: 580px) {
+      .approach-right,
+      .services-list { grid-template-columns: 1fr; }
+      .pillar,
+      .service { border-right: none; border-bottom: 1px solid var(--rule); }
+      .pillar:last-child,
+      .service:last-child { border-bottom: none; }
+      .hero-headline { font-size: clamp(3.5rem, 16vw, 5rem); }
+      .nav-links .nav-link { display: none; }
+      footer { grid-template-columns: 1fr; gap: 0.5rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+        <rect width="10" height="10"/>
+      </svg>
+      Michael Pruskowski
+    </a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <a href="#approach">Approach</a>
+    <a href="#services">Services</a>
+    <a href="#thought-leadership">Thought Leadership</a>
+    <a href="#contact">Let's Connect</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-headline-wrap">
+      <h1 class="hero-headline" style="text-align: center;">Brands to <em>Billions.</em></h1>
+    </div>
+    <div class="hero-footer">
+      <div class="hero-cell">
+        <div class="hero-cell-label">What I Do</div>
+        <div class="hero-cell-value">Healthcare brand strategy, omnichannel engagement, and systems thinking to drive revenue at scale.</div>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-label">Location</div>
+        <div class="hero-cell-value">Warren Township<br>New Jersey</div>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-label">Download</div>
+        <p class="hero-cell-value" style="margin-bottom: 1.5rem;">I am a healthcare brand strategist with 20+ years driving revenue, redefining categories, and building organizations that scale. Download my resume to learn more.</p>
+        <a href="/resume.pdf" download class="btn btn-fill" style="display: inline-block;">Download Resume &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section class="clients-section">
+    <div class="section-row" style="background:var(--bg);">
+      <span class="section-tag" style="color:var(--rule);">Brand Portfolio</span>
+    </div>
+    <div class="clients-strip">
+      <div class="clients-track">
+        <span class="client-name">DUPIXENT</span>
+        <span class="client-name">BEYFORTUS</span>
+        <span class="client-name">NARCAN</span>
+        <span class="client-name">ENTRESTO</span>
+        <span class="client-name">AIMOVIG</span>
+        <span class="client-name">KEYTRUDA</span>
+        <span class="client-name">JARDIANCE</span>
+        <span class="client-name">SPIRIVA</span>
+        <span class="client-name">DUPIXENT</span>
+        <span class="client-name">BEYFORTUS</span>
+        <span class="client-name">NARCAN</span>
+        <span class="client-name">ENTRESTO</span>
+        <span class="client-name">AIMOVIG</span>
+        <span class="client-name">KEYTRUDA</span>
+        <span class="client-name">JARDIANCE</span>
+        <span class="client-name">SPIRIVA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="dot"></span>Strategic Insight</div>
+      <div class="marquee-item"><span class="dot"></span>Omnichannel Design</div>
+      <div class="marquee-item"><span class="dot"></span>Patient Engagement</div>
+      <div class="marquee-item"><span class="dot"></span>Rare Disease Expertise</div>
+      <div class="marquee-item"><span class="dot"></span>Systems Thinking</div>
+      <div class="marquee-item"><span class="dot"></span>DTC Strategy</div>
+      <div class="marquee-item"><span class="dot"></span>Revenue Growth</div>
+      <div class="marquee-item"><span class="dot"></span>Brand Narrative</div>
+      <div class="marquee-item"><span class="dot"></span>Strategic Insight</div>
+      <div class="marquee-item"><span class="dot"></span>Omnichannel Design</div>
+      <div class="marquee-item"><span class="dot"></span>Patient Engagement</div>
+      <div class="marquee-item"><span class="dot"></span>Rare Disease Expertise</div>
+      <div class="marquee-item"><span class="dot"></span>Systems Thinking</div>
+      <div class="marquee-item"><span class="dot"></span>DTC Strategy</div>
+      <div class="marquee-item"><span class="dot"></span>Revenue Growth</div>
+      <div class="marquee-item"><span class="dot"></span>Brand Narrative</div>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="section-row">
+      <span class="section-tag">01 &mdash; Capabilities</span>
+      <span class="section-tag-right">What I bring to the table</span>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-left reveal">
+        <h2 class="approach-heading">Transform<br>complexity into <em>clarity.</em></h2>
+        <p class="approach-body">20+ years blending strategy, design, and technology to move patients from awareness to action. I excel at translating clinical complexity into compelling narratives that drive revenue and redefine categories.</p>
+      </div>
+      <div class="approach-right">
+        <div class="pillar reveal">
+          <span class="icon">legend_toggle</span>
+          <div class="pillar-num">01 / NARRATIVE</div>
+          <h3 class="pillar-title">Brand Narrative Leadership</h3>
+          <p class="pillar-desc">Own narrative and messaging systems. Translate clinical complexity into clear, compelling stories. Align positioning across HCP, patient, and caregiver audiences.</p>
+          <a href="#contact" class="pillar-link">Explore &rarr;</a>
+        </div>
+        <div class="pillar reveal d1">
+          <span class="icon">integration_instructions</span>
+          <div class="pillar-num">02 / INTEGRATION</div>
+          <h3 class="pillar-title">Integrated Strategy</h3>
+          <p class="pillar-desc">Connect disease education to brand engagement. Build ecosystems that move patients from awareness to action. Create unified narratives across evolving indications.</p>
+          <a href="#contact" class="pillar-link">Learn more &rarr;</a>
+        </div>
+        <div class="pillar reveal d2">
+          <span class="icon">person_check</span>
+          <div class="pillar-num">03 / PATIENT FIRST</div>
+          <h3 class="pillar-title">Patient-Centered Design</h3>
+          <p class="pillar-desc">Design patient journeys and identify barriers and decision triggers. Improve HCP-patient conversations through strategic positioning. Rare disease ecosystems are my specialty.</p>
+          <a href="#contact" class="pillar-link">View work &rarr;</a>
+        </div>
+        <div class="pillar reveal d3">
+          <span class="icon">account_tree</span>
+          <div class="pillar-num">04 / SYSTEMS THINKING</div>
+          <h3 class="pillar-title">Turn Complexity into Advantage</h3>
+          <p class="pillar-desc">Turn multi-stakeholder complexity into actionable frameworks. Connect disparate strategic elements into unified, coherent plans. Portfolio-level optimization is where I create impact.</p>
+          <a href="#contact" class="pillar-link">Start here &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="services">
+    <div class="section-row">
+      <span class="section-tag">02 &mdash; Experience</span>
+      <span class="section-tag-right">20+ years driving results</span>
+    </div>
+    <div class="services-head">
+      <div class="services-head-left reveal">
+        <h2 class="services-heading">Leadership<br>across <em>healthcare.</em></h2>
+      </div>
+      <div class="services-head-right">
+        <p class="services-desc reveal d1">From rare disease positioning to blockbuster brand management, I've led strategy for some of the most impactful medications in the world. Proven track record: revenue growth, margin expansion, category redefinition.</p>
+      </div>
+    </div>
+    <div class="services-list">
+      <div class="service reveal">
+        <span class="icon">trending_up</span>
+        <div class="service-num">Growth</div>
+        <div class="service-name">Drive Revenue</div>
+        <div class="service-desc">Developed strategy and customer-centric capabilities that drove organic revenue growth, contributing to 2 agency acquisitions by leading holding companies.</div>
+      </div>
+      <div class="service reveal d1">
+        <span class="icon">monitor_heart</span>
+        <div class="service-num">Margins</div>
+        <div class="service-name">Maximize ROI</div>
+        <div class="service-desc">Leveraged data-driven approach to identify high-return segments and optimize real-time media choices, maximizing ROAS and return on advertising spend.</div>
+      </div>
+      <div class="service reveal d2">
+        <span class="icon">auto_awesome</span>
+        <div class="service-num">Positioning</div>
+        <div class="service-name">Radically Differentiate</div>
+        <div class="service-desc">Strategically repositioned blockbuster brands within pivotal cultural moments by identifying unique insights and leveraging innovative technologies.</div>
+      </div>
+      <div class="service reveal d3">
+        <span class="icon">groups</span>
+        <div class="service-num">Scale</div>
+        <div class="service-name">Build Organization</div>
+        <div class="service-desc">Spearheaded organizational evolution by establishing Centers of Excellence and unified governance frameworks to optimize portfolio-level ROI at scale.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THOUGHT LEADERSHIP -->
+  <section id="thought-leadership">
+    <div class="section-row">
+      <span class="section-tag">03 &mdash; Thought Leadership</span>
+      <span class="section-tag-right">Ideas & insights</span>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-content reveal">
+        <h2 class="tl-heading">One Person Gateway:<br>Why I Built My Own<br><em>Omnichannel Stack</em></h2>
+        <p class="tl-desc">Exploring how modern brand strategists can leverage independent technology stacks to maintain control, reduce dependencies, and create seamless experiences across every customer touchpoint. A deep dive into building your own infrastructure for sustainable brand growth.</p>
+        <a href="https://www.linkedin.com/pulse/one-person-gateway-why-i-built-my-own-omnichannel-stack-pruskowski-qe0ge/" target="_blank" class="btn">Read Article &rarr;</a>
+      </div>
+      <div class="tl-image reveal d1">
+        <img src="images/1773869886083.jpeg" alt="One Person Gateway - Omnichannel Stack">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="cta-band-inner">
+      <h2 class="cta-heading reveal">
+        Ready to<br>
+        <em>Elevate</em><br>
+        Your Brand?
+      </h2>
+      <div class="cta-actions reveal d2">
+        <a href="#contact" class="btn" style="background:#fff;border-color:#fff;color:var(--orange);">Let's Talk &rarr;</a>
+        <a href="#approach" class="btn btn-white">See Capabilities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-row">
+      <span class="section-tag">03 &mdash; Connect</span>
+      <span class="section-tag-right">Get in touch</span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <h2 class="contact-heading">Let's<br><em>Connect.</em></h2>
+        <p class="contact-desc">Ready to discuss brand strategy, healthcare market opportunities, or how to scale your organization? Let's have a conversation.</p>
+        <div class="contact-meta">
+          <div class="contact-row">
+            <span class="contact-row-label">Email</span>
+            <a href="mailto:mpruskow@gmail.com" class="contact-row-val">mpruskow@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Phone</span>
+            <a href="tel:+19089170754" class="contact-row-val">+1 (908) 917-0754</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/MpruskowskI" class="contact-row-val" target="_blank">linkedin.com/in/MpruskowskI</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <form action="https://formspree.io/f/mqegwakb" method="POST" class="reveal d1">
+          <div class="form-row">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-input" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Message</label>
+            <textarea name="vision" class="form-textarea" placeholder="Let's discuss how we can work together..." required></textarea>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-fill">Send Message &rarr;</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+        <rect width="10" height="10"/>
+      </svg>
+      Michael Pruskowski
+    </a>
+    <span class="footer-tagline">Healthcare strategy. Omnichannel leadership. Systems thinking.</span>
+    <span class="footer-copy">&copy; 2026</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const menuLinks = navMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
