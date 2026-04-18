@@ -278,8 +278,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
     }
 
     .hero-top {
@@ -327,7 +326,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
     }
 
     .hero-cell {
@@ -478,8 +476,8 @@
       border-right: 1px solid var(--rule);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 3rem;
+      justify-content: flex-start;
+      gap: 1rem;
     }
 
     .approach-heading {
@@ -489,6 +487,7 @@
       line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--text);
+      margin-bottom: 0;
     }
 
     .approach-heading em { font-style: italic; }
@@ -497,6 +496,7 @@
       font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.75;
+      margin-top: 0;
     }
 
     .approach-right {
@@ -1090,7 +1090,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-headline-wrap">
-      <h1 class="hero-headline" style="text-align: left;">Brands to <em>Billions.</em></h1>
+      <h1 class="hero-headline" style="text-align: left; padding-top: 70px;">Brands to <em>Billions.</em></h1>
     </div>
     <div class="hero-footer">
       <div class="hero-cell">
@@ -1099,11 +1099,8 @@
       </div>
       <div class="hero-cell">
         <div class="hero-cell-label">Latest Insights</div>
-        <p class="hero-cell-value"><a href="https://www.linkedin.com/in/mpruskowski/" target="_blank" style="text-decoration: none; color: inherit;">View my latest posts and insights on LinkedIn &rarr;</a></p>
-      </div>
-      <div class="hero-cell">
-        <div class="hero-cell-label">Latest Code</div>
-        <p class="hero-cell-value"><a href="https://github.com/unseeng33k" target="_blank" style="text-decoration: none; color: inherit;">See my latest commits on GitHub &rarr;</a></p>
+        <p class="hero-cell-value"><a href="https://www.linkedin.com/in/mpruskowski/" target="_blank" style="text-decoration: none; color: inherit;">View my latest posts and insights on LinkedIn &rarr;</a><br>
+        <a href="https://github.com/unseeng33k" target="_blank" style="text-decoration: none; color: inherit;">See my latest commits on GitHub &rarr;</a></p>
       </div>
       <div class="hero-cell">
         <div class="hero-cell-label">Download</div>
@@ -1209,7 +1206,7 @@
   <!-- QUOTE -->
   <section id="quote" class="quote-section">
     <div class="quote-content">
-      <p class="quote-text">"The work isn't done when it ships. It's done when someone, somewhere, quietly trusts it."</p>
+      <p class="quote-text" id="quote-text">"The work isn't done when it ships. It's done when someone, somewhere, quietly trusts it."</p>
     </div>
   </section>
 
@@ -1296,7 +1293,7 @@
     </div>
     <div class="contact-grid">
       <div class="contact-left reveal">
-        <h2 class="contact-heading">Let's<br><em>Connect.</em></h2>
+        <h2 class="contact-heading">Let's <em>Connect.</em></h2>
         <p class="contact-desc">Ready to discuss brand strategy, healthcare market opportunities, or how to scale your organization? Let's have a conversation.</p>
         <div class="contact-meta">
           <div class="contact-row">
@@ -1315,9 +1312,14 @@
             <span class="contact-row-label">GitHub</span>
             <a href="https://github.com/unseeng33k" class="contact-row-val" target="_blank">github.com/unseeng33k</a>
           </div>
+          <div class="contact-row">
+            <span class="contact-row-label">X</span>
+            <a href="https://x.com/unseeng33k" class="contact-row-val" target="_blank">x.com/unseeng33k</a>
+          </div>
         </div>
       </div>
       <div class="contact-right">
+        <h2 class="contact-heading">Send an <em>Email.</em></h2>
         <form action="https://formspree.io/f/mqegwakb" method="POST" class="reveal d1">
           <div class="form-row">
             <label class="form-label">Name</label>
@@ -1378,6 +1380,32 @@
         navMenu.classList.remove('active');
       });
     });
+
+    // Quote parallax effect (scale + opacity)
+    const quoteText = document.getElementById('quote-text');
+
+    const updateQuoteParallax = () => {
+      const rect = quoteText.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const elementCenter = rect.top + rect.height / 2;
+      const centerOffset = elementCenter - viewportHeight / 2;
+      const maxDistance = viewportHeight;
+
+      // Calculate progress: -1 (above) to 1 (below), 0 at center
+      const progress = Math.min(Math.max(centerOffset / maxDistance, -1), 1);
+
+      // Scale: starts at 0.7, peaks at 1 at center, back to 0.7
+      const scale = 0.7 + (1 - Math.abs(progress)) * 0.3;
+
+      // Opacity: starts at 0.2, peaks at 1 at center, back to 0.2
+      const opacity = 0.2 + (1 - Math.abs(progress)) * 0.8;
+
+      quoteText.style.transform = `scale(${scale})`;
+      quoteText.style.opacity = opacity;
+    };
+
+    window.addEventListener('scroll', updateQuoteParallax, { passive: true });
+    updateQuoteParallax();
 
     // Fetch LinkedIn post
   </script>
