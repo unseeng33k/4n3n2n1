@@ -1036,13 +1036,13 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">
+    <a href="#" class="nav-logo" id="navLogo">
       <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
         <rect width="10" height="10"/>
       </svg>
       Michael Pruskowski
     </a>
-    <div class="hamburger" id="hamburger">
+    <div class="hamburger" id="hamburger" style="display: none;">
       <span></span>
       <span></span>
       <span></span>
@@ -1318,19 +1318,18 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
+    // Logo menu toggle
+    const navLogo = document.getElementById('navLogo');
     const navMenu = document.getElementById('navMenu');
     const menuLinks = navMenu.querySelectorAll('a');
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
+    navLogo.addEventListener('click', (e) => {
+      e.preventDefault();
       navMenu.classList.toggle('active');
     });
 
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
         navMenu.classList.remove('active');
       });
     });
