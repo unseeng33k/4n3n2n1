@@ -129,6 +129,9 @@
   </script>
 
   <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
   <script defer src="https://cdn.vercel-analytics.com/v1/script.js"></script>
 
   <style>
@@ -1108,7 +1111,7 @@
       <div class="hero-cell">
         <div class="hero-cell-label">Download</div>
         <p class="hero-cell-value" style="margin-bottom: 1.5rem;">I am a healthcare brand strategist with 20+ years driving revenue, redefining categories, and building organizations that scale. Download my resume to learn more.</p>
-        <a href="/resume.pdf" download class="btn btn-fill" style="display: inline-block;">Download Resume &rarr;</a>
+        <a href="/resume.pdf" download class="btn btn-fill" style="display: inline-block;" onclick="va('event', { name: 'Resume Downloaded' })">Download Resume &rarr;</a>
       </div>
     </div>
   </section>
