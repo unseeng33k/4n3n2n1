@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /documents/
+
+# Allow everything else to be indexed
+Allow: /
