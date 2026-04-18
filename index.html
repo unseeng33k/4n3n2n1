@@ -1057,6 +1057,45 @@
       footer { grid-template-columns: 1fr; gap: 0.5rem; }
       .form-row { grid-template-columns: 1fr; gap: 0.5rem; }
     }
+
+    /* ─── LINKEDIN POST ─── */
+    .linkedin-loading {
+      display: inline-block;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .linkedin-post-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .linkedin-post-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .linkedin-post-link {
+      color: var(--orange);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .linkedin-post-link:hover {
+      color: var(--orange2);
+      text-decoration: underline;
+    }
+
+    .linkedin-error {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -1095,9 +1134,11 @@
         <div class="hero-cell-label">What I Do</div>
         <div class="hero-cell-value">Healthcare brand strategy, omnichannel engagement, and systems thinking to drive revenue at scale.</div>
       </div>
-      <div class="hero-cell">
-        <div class="hero-cell-label">Location</div>
-        <div class="hero-cell-value">New York City<br>New York</div>
+      <div class="hero-cell" id="linkedin-cell">
+        <div class="hero-cell-label">Latest Insights</div>
+        <div class="hero-cell-value" id="linkedin-content">
+          <span class="linkedin-loading">Loading...</span>
+        </div>
       </div>
       <div class="hero-cell">
         <div class="hero-cell-label">Download</div>
@@ -1372,6 +1413,36 @@
         navMenu.classList.remove('active');
       });
     });
+
+    // Fetch LinkedIn post
+    async function fetchLinkedInPost() {
+      const container = document.getElementById('linkedin-content');
+      try {
+        const response = await fetch('/api/linkedin/latest-post');
+        if (!response.ok) throw new Error('Failed to fetch LinkedIn post');
+
+        const data = await response.json();
+
+        let html = '<div class="linkedin-post-preview">';
+        html += `<div class="linkedin-post-title">${escapeHtml(data.title)}</div>`;
+        html += `<a href="${data.url}" target="_blank" class="linkedin-post-link">View on LinkedIn →</a>`;
+        html += '</div>';
+
+        container.innerHTML = html;
+      } catch (error) {
+        console.error('LinkedIn fetch error:', error);
+        container.innerHTML = '<div class="linkedin-error">Healthcare brand strategy, omnichannel engagement, and systems thinking.</div>';
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Load LinkedIn post on page load
+    document.addEventListener('DOMContentLoaded', fetchLinkedInPost);
   </script>
 
 </body>
