@@ -683,6 +683,34 @@
       border-radius: 0.5rem;
     }
 
+    /* ─── QUOTE SECTION ─── */
+    #quote {
+      padding: 4rem 2rem;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .quote-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quote-content {
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--dark);
+      font-style: italic;
+      margin: 0;
+    }
+
     /* ─── CTA BAND ─── */
     .cta-band {
       background-color: var(--orange);
@@ -1127,6 +1155,13 @@
       <div class="marquee-item"><span class="dot"></span>Brand Narrative</div>
     </div>
   </div>
+
+  <!-- QUOTE -->
+  <section id="quote" class="quote-section">
+    <div class="quote-content">
+      <p class="quote-text">"The work isn't done when it ships. It's done when someone, somewhere, quietly trusts it."</p>
+    </div>
+  </section>
 
   <!-- APPROACH -->
   <section id="approach">
