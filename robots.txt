@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /documents/
 Disallow: /images/
+Disallow: /resume.pdf
 
 # Allow everything else to be indexed
 Allow: /
+
+# Sitemap
+Sitemap: https://4n3n2n1.com/sitemap.xml
