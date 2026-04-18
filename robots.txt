@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /documents/
+Disallow: /images/
 
 # Allow everything else to be indexed
 Allow: /
