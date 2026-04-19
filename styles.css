@@ -330,6 +330,17 @@ nav {
   to   { transform: translateX(-50%); }
 }
 
+@keyframes marqueeRev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes parallax {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-30px); opacity: 0.8; }
+}
+
 /* ─── SECTION LABEL ─── */
 .section-row {
   display: flex;
