@@ -61,6 +61,9 @@ const pillars = [
 function ApproachSection() {
   return (
     <section id="approach">
+      <div className="section-row">
+        <span className="section-tag">01 &mdash; Approach</span>
+      </div>
       <div style={secStyles.grid2} data-approach-grid>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Brand Strategy:<br/>Transform complexity into <em style={{fontStyle:'italic'}}>clarity.</em></h2>
@@ -92,6 +95,9 @@ const services = [
 function ServicesSection() {
   return (
     <section id="services">
+      <div className="section-row">
+        <span className="section-tag">02 &mdash; Services</span>
+      </div>
       <div style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}} data-services-header>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Healthcare Brand<br/>Leadership & <em style={{fontStyle:'italic'}}>Strategy.</em></h2>
@@ -142,6 +148,11 @@ function CTABand() {
 
 function ContactSection() {
   const [sent, setSent] = React.useState(false);
+  const sectionHeader = (
+    <div className="section-row">
+      <span className="section-tag">04 &mdash; Contact</span>
+    </div>
+  );
   const contacts = [
     ['Email','mpruskowski@gmail.com','mailto:mpruskowski@gmail.com'],
     ['Phone','+1 (908) 917-0754','tel:+19089170754'],
@@ -151,6 +162,7 @@ function ContactSection() {
   ];
   return (
     <section id="contact">
+      {sectionHeader}
       <div style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}} data-contact-grid>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2.5rem,4.5vw,5rem)', fontWeight:300, lineHeight:0.95, letterSpacing:'-0.02em', marginBottom:32, color:'#111'}}>Let's <em style={{fontStyle:'italic'}}>Connect.</em></h2>
