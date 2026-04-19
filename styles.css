@@ -594,6 +594,13 @@ nav {
   border-radius: 0.5rem;
 }
 
+.tl-divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background-color: var(--rule);
+  margin: 2rem 0;
+}
+
 /* ─── QUOTE SECTION ─── */
 #quote {
   padding: 8rem 2rem;
