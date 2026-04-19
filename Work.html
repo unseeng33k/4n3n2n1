@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Michael Pruskowski</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #fffafa;
+      color: #111;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+    img {
+      display: block;
+      width: 100%;
+      filter: grayscale(100%) contrast(1.05);
+      transition: filter 0.4s ease;
+    }
+    img:hover { filter: grayscale(60%) contrast(1.05); }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Tweaks panel */
+    #tweaks-panel {
+      display: none;
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 999;
+      background: #fffafa;
+      border: 1px solid rgba(17,17,17,0.13);
+      padding: 20px;
+      width: 220px;
+    }
+    #tweaks-panel.open { display: block; }
+    .tweak-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #D32F2F;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .tweak-row { margin-bottom: 16px; }
+    .tweak-select {
+      width: 100%;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      border: 1px solid rgba(17,17,17,0.2);
+      background: #fff;
+      padding: 6px 8px;
+      color: #111;
+    }
+    .tweak-check-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tweak-check-row input { accent-color: #D32F2F; }
+    .tweak-check-row span {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(17,17,17,0.6);
+    }
+  </style>
+</head>
+<body>
+
+<script type="text/babel" src="Nav.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "imageStyle": "grayscale",
+  "gridDensity": "newspaper"
+}/*EDITMODE-END*/;
+
+// Tweaks state
+let tweakState = { ...TWEAK_DEFAULTS };
+
+// Register tweaks
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') {
+    document.getElementById('tweaks-panel').classList.add('open');
+  }
+  if (e.data?.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaks-panel').classList.remove('open');
+  }
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+const CASES = [
+  {
+    id: 'dupixent',
+    brand: 'DUPIXENT',
+    category: 'Atopic Dermatitis · Type 2 Inflammation',
+    headline: 'How DUPIXENT Rewrote the Rules of Atopic Dermatitis — and Built a $14B Franchise',
+    lede: 'When most physicians still thought atopic dermatitis was a nuisance condition, the strategy was to make them think again. A decade of patient-first narrative work, clinical storytelling, and omnichannel architecture helped turn an unproven biologic into the defining drug of its era.',
+    role: 'Brand Narrative Lead / Omnichannel Strategy',
+    year: '2017 — 2022',
+    img: 'https://images.unsplash.com/photo-1576671081837-49000212a370?w=1600&q=80&fit=crop',
+    featured: true,
+    outcomes: ['Category creation across 6+ indications','HCP + patient ecosystem alignment','Omnichannel architecture: 9 channels, 1 message'],
+  },
+  {
+    id: 'beyfortus',
+    brand: 'BEYFORTUS',
+    category: 'Infant RSV Prevention',
+    headline: 'Launching the First Broadly Accessible RSV Immunization for Infants',
+    lede: 'Every infant deserves protection from day one. The launch strategy made that case to pediatricians, OBs, and parents simultaneously.',
+    role: 'Launch Strategy',
+    year: '2023',
+    img: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'narcan',
+    brand: 'NARCAN',
+    category: 'Opioid Overdose Reversal',
+    headline: 'Making Naloxone a Household Name',
+    lede: 'Brand strategy for the most urgent drug in America — repositioning a clinical rescue agent as essential community infrastructure.',
+    role: 'Brand Strategy',
+    year: '2019 — 2021',
+    img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'entresto',
+    brand: 'ENTRESTO',
+    category: 'Heart Failure',
+    headline: 'From Skepticism to Standard of Care: ENTRESTO\'s Narrative Shift',
+    lede: 'Cardiologists didn\'t believe the data could be real. Reframing the clinical story — for HCPs and patients both — changed what was possible.',
+    role: 'Integrated Strategy',
+    year: '2016 — 2018',
+    img: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'aimovig',
+    brand: 'AIMOVIG',
+    category: 'Migraine Prevention · CGRP',
+    headline: 'The First CGRP: Launching a New Mechanism Class in Migraine',
+    lede: 'Category creation in a crowded pain space. Educating neurologists and patients on a mechanism no one had heard of.',
+    role: 'Launch + HCP Strategy',
+    year: '2018',
+    img: 'https://images.unsplash.com/photo-1614113489855-66422ad300a4?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'keytruda',
+    brand: 'KEYTRUDA',
+    category: 'Oncology · Immunotherapy',
+    headline: 'Building Patient Trust in Immuno-Oncology',
+    lede: 'IO brands must navigate extraordinary hope and extraordinary complexity. Strategic patient engagement work that met patients where they were.',
+    role: 'Patient Strategy',
+    year: '2020',
+    img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'jardiance',
+    brand: 'JARDIANCE',
+    category: 'Cardiovascular · Diabetes',
+    headline: 'Beyond Glucose: Positioning JARDIANCE as a Heart Drug',
+    lede: 'The EMPA-REG data changed everything. The strategy translated a landmark CV outcome into a message PCPs could act on.',
+    role: 'Brand Narrative',
+    year: '2016 — 2017',
+    img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'spiriva',
+    brand: 'SPIRIVA',
+    category: 'COPD · Respiratory',
+    headline: 'Sustaining a Franchise Through Genericization',
+    lede: 'Late-lifecycle brand strategy. Defending a category leader as competition arrived and the narrative needed reinvention.',
+    role: 'Lifecycle Strategy',
+    year: '2014 — 2016',
+    img: 'https://images.unsplash.com/photo-1584362917165-526a968579e8?w=900&q=80&fit=crop',
+    featured: false,
+  },
+];
+
+function Byline({ role, year }) {
+  return (
+    <div style={{ display:'flex', gap:16, alignItems:'center', marginBottom: 10 }}>
+      <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'#D32F2F' }}>{role}</span>
+      <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.12em', color:'rgba(17,17,17,0.35)' }}>{year}</span>
+    </div>
+  );
+}
+
+function Tag({ text }) {
+  return (
+    <span style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(17,17,17,0.42)', display:'inline-block' }}>{text}</span>
+  );
+}
+
+function WorkPage() {
+  const [activeCase, setActiveCase] = React.useState(null);
+  const dupixent = CASES[0];
+  const secondary = CASES.slice(1, 5);   // 4 in the middle grid
+  const tertiary  = CASES.slice(5);      // bottom strip
+
+  if (activeCase) {
+    return <CaseStudyDetail brand={activeCase} onBack={() => setActiveCase(null)} />;
+  }
+
+  return (
+    <main style={{ paddingTop: 52 }}>
+      {/* Masthead */}
+      <div style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', padding:'3rem 2rem' }}>
+        <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(5rem,12.5vw,13rem)', fontWeight:300, letterSpacing:'-0.03em', textAlign:'left', color:'#111', lineHeight:0.9, padding:'0.5rem 0' }}>Work</h1>
+      </div>
+
+      {/* HERO — DUPIXENT */}
+      <article style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'2fr 1fr' }}>
+        <div style={{ borderRight:'1px solid rgba(17,17,17,0.13)', cursor:'pointer', overflow:'hidden' }} onClick={() => setActiveCase(dupixent)}>
+          <img src={dupixent.img} alt={dupixent.brand} style={{ height:'100%', objectFit:'cover', objectPosition:'center 20%' }} />
+        </div>
+        <div style={{ padding:'3rem 2.5rem', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+          <div>
+            <div style={{ marginBottom:16 }}>
+              <span style={{ display:'inline-block', background:'#D32F2F', color:'#fff', fontFamily:"'Space Mono',monospace", fontSize:8, letterSpacing:'0.2em', textTransform:'uppercase', padding:'4px 8px', marginBottom:14 }}>Featured Case Study</span>
+            </div>
+            <Tag text={dupixent.category} />
+            <h2 onClick={() => setActiveCase(dupixent)} style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.6rem,2.8vw,2.6rem)', fontWeight:300, lineHeight:1.1, letterSpacing:'-0.02em', color:'#111', margin:'12px 0 18px', cursor:'pointer' }}>
+              {dupixent.headline}
+            </h2>
+            <p style={{ fontSize:13, color:'rgba(17,17,17,0.55)', lineHeight:1.75, marginBottom:24 }}>{dupixent.lede}</p>
+          </div>
+          <div>
+            <Byline role={dupixent.role} year={dupixent.year} />
+            <div style={{ borderTop:'1px solid rgba(17,17,17,0.13)', paddingTop:20, display:'flex', flexDirection:'column', gap:10 }}>
+              {dupixent.outcomes.map((o,i) => (
+                <div key={i} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ width:3, height:3, background:'#D32F2F', flexShrink:0, marginTop:6, display:'inline-block' }}></span>
+                  <span style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:12, color:'rgba(17,17,17,0.55)', lineHeight:1.6 }}>{o}</span>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => setActiveCase(dupixent)} style={{ marginTop:24, fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.16em', textTransform:'uppercase', border:'1px solid #111', padding:'10px 20px', background:'transparent', color:'#111', cursor:'pointer' }}>
+              Read Case Study →
+            </button>
+          </div>
+        </div>
+      </article>
+
+      {/* SECONDARY GRID — 4 columns */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+        {secondary.map((c, i) => (
+          <article key={c.id} onClick={() => setActiveCase(c)} style={{ borderRight: i < 3 ? '1px solid rgba(17,17,17,0.13)' : 'none', cursor:'pointer' }}>
+            <img src={c.img} alt={c.brand} style={{ height:220, objectFit:'cover' }} />
+            <div style={{ padding:'1.5rem 1.5rem 2rem' }}>
+              <Tag text={c.category} />
+              <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.1rem,1.6vw,1.5rem)', fontWeight:300, lineHeight:1.15, letterSpacing:'-0.01em', color:'#111', margin:'8px 0 10px' }}>
+                {c.headline}
+              </h3>
+              <p style={{ fontSize:12, color:'rgba(17,17,17,0.5)', lineHeight:1.7, marginBottom:12, display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical', overflow:'hidden' }}>{c.lede}</p>
+              <Byline role={c.role} year={c.year} />
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* SECTION LABEL */}
+      <div style={{ background:'#D32F2F', padding:'0.7rem 2rem', display:'flex', alignItems:'center' }}>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.2em', textTransform:'uppercase', color:'rgba(255,255,255,0.75)' }}>Additional Work</span>
+      </div>
+
+      {/* TERTIARY STRIP — 3 smaller + sidebar */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 280px', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+        {tertiary.map((c, i) => (
+          <article key={c.id} onClick={() => setActiveCase(c)} style={{ borderRight:'1px solid rgba(17,17,17,0.13)', cursor:'pointer' }}>
+            <img src={c.img} alt={c.brand} style={{ height:160, objectFit:'cover' }} />
+            <div style={{ padding:'1.2rem 1.5rem 1.5rem' }}>
+              <Tag text={c.category} />
+              <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1rem,1.3vw,1.3rem)', fontWeight:300, lineHeight:1.2, letterSpacing:'-0.01em', color:'#111', margin:'7px 0 8px' }}>
+                {c.headline}
+              </h3>
+              <Byline role={c.role} year={c.year} />
+            </div>
+          </article>
+        ))}
+        {/* Sidebar */}
+        <div style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:0 }}>
+          <div style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'#D32F2F', marginBottom:16, paddingBottom:12, borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+            By The Numbers
+          </div>
+          {[['20+','Years in healthcare brand strategy'],['$14B+','DUPIXENT peak revenue contribution'],['8','Blockbuster brands stewarded'],['6+','Disease areas across lifecycle stages']].map(([num, label]) => (
+            <div key={num} style={{ paddingBottom:16, marginBottom:16, borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+              <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'2.2rem', fontWeight:300, letterSpacing:'-0.02em', color:'#111', lineHeight:1 }}>{num}</div>
+              <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:11, color:'rgba(17,17,17,0.5)', lineHeight:1.5, marginTop:4 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <footer style={{ display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)' }}>
+        <a href="index.html" style={{ display:'flex', alignItems:'center', gap:8, fontFamily:"'Space Mono',monospace", fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'#111', textDecoration:'none' }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <rect x="0" y="0" width="5" height="5" fill="#2563eb"/>
+            <rect x="5" y="0" width="5" height="5" fill="#dc2626"/>
+            <rect x="0" y="5" width="5" height="5" fill="#eab308"/>
+            <rect x="5" y="5" width="5" height="5" fill="#16a34a"/>
+          </svg>
+          Michael Pruskowski
+        </a>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9.6, color:'rgba(17,17,17,0.42)', letterSpacing:'0.08em' }}>Healthcare strategy. Omnichannel leadership. Systems thinking.</span>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9.6, color:'rgba(17,17,17,0.42)' }}>&copy; 2026</span>
+      </footer>
+    </main>
+  );
+}
+
+function CaseStudyDetail({ brand, onBack }) {
+  return (
+    <main style={{ paddingTop: 52 }}>
+      {/* Back + masthead */}
+      <div style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', padding:'0.6rem 2rem' }}>
+        <button onClick={onBack} style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(17,17,17,0.42)', background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0 }}>
+          ← Back to Work
+        </button>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:'clamp(1.5rem,3vw,3rem)', fontWeight:700, letterSpacing:'-0.02em', textAlign:'center', textTransform:'uppercase', color:'#111', lineHeight:1, padding:'0.5rem 0' }}>{brand.brand}</span>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(17,17,17,0.42)', textAlign:'right' }}>{brand.year}</span>
+      </div>
+
+      {/* Hero image full-width */}
+      <div style={{ borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+        <img src={brand.img} alt={brand.brand} style={{ height:'55vh', objectFit:'cover', objectPosition:'center 30%' }} />
+      </div>
+
+      {/* Title band */}
+      <div style={{ padding:'3.5rem 2rem 2.5rem', borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr 320px', gap:'4rem' }}>
+        <div>
+          <Tag text={brand.category} />
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2rem,4.5vw,4rem)', fontWeight:300, lineHeight:1.05, letterSpacing:'-0.03em', color:'#111', margin:'14px 0 24px' }}>
+            {brand.headline}
+          </h2>
+          <p style={{ fontSize:15, color:'rgba(17,17,17,0.55)', lineHeight:1.8, maxWidth:640 }}>{brand.lede}</p>
+        </div>
+        <div style={{ paddingLeft:'2rem', borderLeft:'1px solid rgba(17,17,17,0.13)' }}>
+          {[['Brand', brand.brand],['Role', brand.role],['Period', brand.year],['Category', brand.category]].map(([k,v]) => (
+            <div key={k} style={{ paddingBottom:16, marginBottom:16, borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:6 }}>{k}</div>
+              <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:13, fontWeight:500, color:'#111' }}>{v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Body content — 2 col */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+        <div style={{ padding:'3rem 2rem', borderRight:'1px solid rgba(17,17,17,0.13)' }}>
+          <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:20 }}>The Challenge</div>
+          <p style={{ fontSize:14, color:'rgba(17,17,17,0.55)', lineHeight:1.8 }}>
+            {brand.id === 'dupixent'
+              ? 'Atopic dermatitis was dismissed as a "rash" by insurers, misunderstood by PCPs, and underprescribed by dermatologists who lacked confidence in biologics. Simultaneously, patients had been failed so many times they stopped believing treatment could work. The challenge was cultural as much as clinical.'
+              : `The ${brand.brand} challenge was to shift physician behavior and patient belief simultaneously — navigating a crowded competitive space with a novel mechanism and unproven market. Payers, providers, and patients each needed a different version of the same story.`}
+          </p>
+        </div>
+        <div style={{ padding:'3rem 2rem' }}>
+          <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:20 }}>The Approach</div>
+          <p style={{ fontSize:14, color:'rgba(17,17,17,0.55)', lineHeight:1.8 }}>
+            {brand.id === 'dupixent'
+              ? 'We led with disease burden — uniting HCP and patient narratives around a shared language of "Type 2 inflammation." Brand experience was redesigned end-to-end: detailing tools, patient support, omnichannel journeys, and congress presence. Every touchpoint carried the same disciplined message.'
+              : `The strategy centered on building credibility through peer voices, layering clinical messaging with patient stories, and architecting an omnichannel system that reached the right audience at the right moment. Real-world evidence amplified the launch narrative over time.`}
+          </p>
+        </div>
+      </div>
+
+      {/* Outcomes */}
+      {brand.outcomes && (
+        <div style={{ padding:'3rem 2rem', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+          <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:24 }}>Outcomes</div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:0 }}>
+            {brand.outcomes.map((o,i) => (
+              <div key={i} style={{ padding:'1.5rem 2rem 1.5rem 0', borderRight: i < brand.outcomes.length - 1 ? '1px solid rgba(17,17,17,0.13)' : 'none', paddingLeft: i > 0 ? '2rem' : 0 }}>
+                <div style={{ width:3, height:3, background:'#D32F2F', marginBottom:12, display:'inline-block' }}></div>
+                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:20, fontWeight:300, lineHeight:1.3, color:'#111' }}>{o}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Quote */}
+      <div style={{ padding:'6rem 2rem', textAlign:'center', borderBottom:'1px solid rgba(17,17,17,0.13)', background:'rgba(0,0,0,0.02)' }}>
+        <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.4rem,3vw,2.2rem)', fontWeight:300, fontStyle:'italic', lineHeight:1.4, color:'#111', maxWidth:760, margin:'0 auto' }}>
+          "The work isn't done when it ships. It's done when someone, somewhere, quietly trusts it."
+        </p>
+      </div>
+
+      {/* Contact Section */}
+      <section style={{ display:'grid', gridTemplateColumns:'1fr 1fr' }}>
+        {/* Left column - Contact Info */}
+        <div style={{ padding:'4rem 2rem', borderRight:'1px solid rgba(17,17,17,0.13)', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.8rem,4vw,2.4rem)', fontWeight:300, marginBottom:40, color:'#111' }}>
+            Let's Connect.
+          </h2>
+          <div style={{ display:'flex', flexDirection:'column', gap:32 }}>
+            <div>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:8 }}>Email</div>
+              <a href="mailto:mpruskowski@gmail.com" style={{ fontFamily:"'Space Mono',monospace", fontSize:11, color:'#111', textDecoration:'none' }}>mpruskowski@gmail.com</a>
+            </div>
+            <div>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:8 }}>Phone</div>
+              <a href="tel:+19089170754" style={{ fontFamily:"'Space Mono',monospace", fontSize:11, color:'#111', textDecoration:'none' }}>+1 (908) 917-0754</a>
+            </div>
+            <div>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:8 }}>LinkedIn</div>
+              <a href="https://linkedin.com/in/Mpruskowski" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Space Mono',monospace", fontSize:11, color:'#111', textDecoration:'none' }}>linkedin.com/in/Mpruskowski</a>
+            </div>
+            <div>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:8 }}>GitHub</div>
+              <a href="https://github.com/unseeng33k" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Space Mono',monospace", fontSize:11, color:'#111', textDecoration:'none' }}>github.com/unseeng33k</a>
+            </div>
+            <div>
+              <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:8 }}>X</div>
+              <a href="https://x.com/unseeng33k" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Space Mono',monospace", fontSize:11, color:'#111', textDecoration:'none' }}>x.com/unseeng33k</a>
+            </div>
+          </div>
+        </div>
+        
+        {/* Right column - Contact Form */}
+        <div style={{ padding:'4rem 2rem', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.8rem,4vw,2.4rem)', fontWeight:300, marginBottom:40, color:'#111' }}>
+            Send an Email.
+          </h2>
+          <form style={{ display:'flex', flexDirection:'column', gap:20 }} onSubmit={e => { e.preventDefault(); alert('Message sent!'); }}>
+            <div>
+              <label style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', display:'block', marginBottom:8 }}>Name</label>
+              <input type="text" placeholder="Your name" style={{ width:'100%', padding:'12px 14px', fontFamily:"'Space Mono',monospace", fontSize:11, border:'1px solid rgba(17,17,17,0.13)', color:'#111', boxSizing:'border-box' }} required />
+            </div>
+            <div>
+              <label style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', display:'block', marginBottom:8 }}>Email</label>
+              <input type="email" placeholder="your@email.com" style={{ width:'100%', padding:'12px 14px', fontFamily:"'Space Mono',monospace", fontSize:11, border:'1px solid rgba(17,17,17,0.13)', color:'#111', boxSizing:'border-box' }} required />
+            </div>
+            <div>
+              <label style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', display:'block', marginBottom:8 }}>Message</label>
+              <textarea placeholder="Your message..." style={{ width:'100%', padding:'12px 14px', fontFamily:"'Space Mono',monospace", fontSize:11, border:'1px solid rgba(17,17,17,0.13)', color:'#111', boxSizing:'border-box', minHeight:100, resize:'vertical' }} required></textarea>
+            </div>
+            <button type="submit" style={{ padding:'12px 20px', fontFamily:"'Space Mono',monospace", fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', background:'#D32F2F', color:'#fff', border:'none', cursor:'pointer', marginTop:8 }}>Send Message</button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)' }}>
+        <a href="index.html" style={{ display:'flex', alignItems:'center', gap:8, fontFamily:"'Space Mono',monospace", fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'#111', textDecoration:'none' }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <rect x="0" y="0" width="5" height="5" fill="#2563eb"/>
+            <rect x="5" y="0" width="5" height="5" fill="#dc2626"/>
+            <rect x="0" y="5" width="5" height="5" fill="#eab308"/>
+            <rect x="5" y="5" width="5" height="5" fill="#16a34a"/>
+          </svg>
+          Michael Pruskowski
+        </a>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9.6, color:'rgba(17,17,17,0.42)', letterSpacing:'0.08em' }}>Healthcare strategy. Omnichannel leadership. Systems thinking.</span>
+        <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9.6, color:'rgba(17,17,17,0.42)' }}>&copy; 2026</span>
+      </footer>
+    </main>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <WorkPage />
+      {/* Tweaks panel */}
+      <div id="tweaks-panel">
+        <div style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'#111', marginBottom:16, paddingBottom:10, borderBottom:'1px solid rgba(17,17,17,0.13)' }}>Tweaks</div>
+        <div className="tweak-row">
+          <span className="tweak-label">Image Style</span>
+          <select className="tweak-select" defaultValue="grayscale" onChange={e => {
+            const v = e.target.value;
+            document.querySelectorAll('img').forEach(img => {
+              img.style.filter = v === 'grayscale' ? 'grayscale(100%) contrast(1.05)' : v === 'duotone' ? 'grayscale(100%) sepia(40%) hue-rotate(320deg) saturate(2)' : 'none';
+            });
+          }}>
+            <option value="grayscale">Grayscale</option>
+            <option value="duotone">Duotone Red</option>
+            <option value="color">Full Color</option>
+          </select>
+        </div>
+        <div className="tweak-check-row">
+          <input type="checkbox" id="hover-color" onChange={e => {
+            const style = document.getElementById('img-hover-style') || document.createElement('style');
+            style.id = 'img-hover-style';
+            style.textContent = e.target.checked ? 'img:hover { filter: none !important; }' : '';
+            document.head.appendChild(style);
+          }} />
+          <span>Color on hover</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+<div id="root"></div>
+</body>
+</html>
