@@ -76,6 +76,161 @@
       text-transform: uppercase;
       color: rgba(17,17,17,0.6);
     }
+
+    /* Responsive media queries */
+    @media (max-width: 968px) {
+      /* Hero section: stack image and content */
+      [data-layout="hero-2col"] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-layout="hero-2col"] > div:first-child {
+        min-height: 300px;
+      }
+      [data-layout="hero-2col"] > div:nth-child(2) {
+        border-right: none !important;
+        border-top: 1px solid rgba(17,17,17,0.13) !important;
+      }
+
+      /* Secondary grid: 2 columns on tablet */
+      [data-layout="secondary-4col"] {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      [data-layout="secondary-4col"] > article:nth-child(2),
+      [data-layout="secondary-4col"] > article:nth-child(4) {
+        border-right: none !important;
+      }
+      [data-layout="secondary-4col"] > article:nth-child(1),
+      [data-layout="secondary-4col"] > article:nth-child(2) {
+        border-bottom: 1px solid rgba(17,17,17,0.13);
+      }
+
+      /* Tertiary grid: collapse to single column + sidebar */
+      [data-layout="tertiary-4col"] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-layout="tertiary-4col"] > article {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(17,17,17,0.13);
+      }
+      [data-layout="tertiary-4col"] > div:last-child {
+        border-top: 1px solid rgba(17,17,17,0.13);
+        border-left: none !important;
+        padding-left: 1.5rem !important;
+      }
+
+      /* Case study title band: stack */
+      [data-layout="case-title-2col"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      [data-layout="case-title-2col"] > div:last-child {
+        padding-left: 0 !important;
+        border-left: none !important;
+        border-top: 1px solid rgba(17,17,17,0.13);
+        padding-top: 2rem !important;
+      }
+
+      /* Case study body: stack */
+      [data-layout="case-body-2col"] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-layout="case-body-2col"] > div {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(17,17,17,0.13);
+        padding-bottom: 2rem !important;
+        margin-bottom: 2rem !important;
+      }
+      [data-layout="case-body-2col"] > div:last-child {
+        border-bottom: none;
+      }
+
+      /* Case study outcomes: 1 column on tablet */
+      [data-layout="outcomes-3col"] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-layout="outcomes-3col"] > div {
+        border-right: none !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }
+
+      /* Footer: adjust for tablet */
+      [data-layout="footer-3col"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main { padding-top: 52px !important; }
+
+      /* Masthead */
+      [data-layout="masthead"] h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem) !important;
+      }
+
+      /* Hero: images get smaller height */
+      [data-layout="hero-2col"] > div:first-child {
+        min-height: 200px !important;
+      }
+
+      /* Padding adjustments for mobile */
+      [data-layout*="padding"] {
+        padding: 1.5rem 1rem !important;
+      }
+
+      div[style*="padding:'3rem"] {
+        padding: 1.5rem 1rem !important;
+      }
+
+      /* Secondary grid: single column on mobile */
+      [data-layout="secondary-4col"] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-layout="secondary-4col"] > article {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(17,17,17,0.13);
+      }
+      [data-layout="secondary-4col"] > article:last-child {
+        border-bottom: none;
+      }
+
+      /* Hero text on mobile */
+      [data-layout="hero-2col"] h2 {
+        font-size: clamp(1.3rem, 2.5vw, 1.6rem) !important;
+      }
+
+      /* Secondary card sizing */
+      [data-layout="secondary-4col"] img {
+        height: 180px !important;
+      }
+
+      /* Tertiary images */
+      [data-layout="tertiary-4col"] img {
+        height: 140px !important;
+      }
+
+      /* Case study hero image height */
+      [data-layout="case-hero"] {
+        min-height: 300px !important;
+      }
+
+      /* Case study title on mobile */
+      [data-layout="case-title-2col"] h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2rem) !important;
+      }
+
+      /* Contact section padding */
+      [data-layout="contact"] {
+        padding: 1.5rem 1rem !important;
+      }
+
+      /* Remove sidebar on mobile, show full-width */
+      [data-layout="tertiary-sidebar"] {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
