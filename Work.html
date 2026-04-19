@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work — Michael Pruskowski</title>
+  <meta name="description" content="Case studies & projects showcasing healthcare brand strategy, omnichannel engagement, and revenue-driving campaigns across leading organizations.">
+  <link rel="canonical" href="https://4n3n2n1.com/Work.html">
+  <meta property="og:title" content="Work — Michael Pruskowski">
+  <meta property="og:description" content="Case studies & projects showcasing healthcare brand strategy, omnichannel engagement, and revenue-driving campaigns across leading organizations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://4n3n2n1.com/Work.html">
+  <meta property="og:image" content="https://4n3n2n1.com/images/1773869886083.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Work — Michael Pruskowski">
+  <meta name="twitter:description" content="Case studies & projects showcasing healthcare brand strategy, omnichannel engagement, and revenue-driving campaigns.">
+  <meta name="twitter:image" content="https://4n3n2n1.com/images/1773869886083.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -26,6 +37,62 @@
       transition: filter 0.4s ease;
     }
     img:hover { filter: grayscale(60%) contrast(1.05); }
+
+    /* Responsive mobile optimizations */
+    @media (max-width: 960px) {
+      /* Hero section: stack to single column */
+      [data-hero-grid] { grid-template-columns: 1fr !important; }
+      [data-hero-grid] > div:nth-child(2) { border-right: none !important; border-top: 1px solid rgba(17,17,17,0.13) !important; }
+
+      /* Secondary grid: 4 cols → 2 cols */
+      [data-secondary-grid] { grid-template-columns: 1fr 1fr !important; }
+      [data-secondary-grid] article:nth-child(n+3) { border-right: 1px solid rgba(17,17,17,0.13) !important; }
+      [data-secondary-grid] article:nth-child(4n) { border-right: none !important; }
+
+      /* Tertiary grid: 3 cols + sidebar → single column */
+      [data-tertiary-grid] { grid-template-columns: 1fr !important; }
+      [data-tertiary-grid] article { border-right: none !important; border-bottom: 1px solid rgba(17,17,17,0.13) !important; }
+      [data-tertiary-grid] [data-sidebar] { padding: 1.5rem 2rem !important; border-right: none !important; border-top: 1px solid rgba(17,17,17,0.13) !important; }
+
+      /* Case study body: 2 cols → 1 col */
+      [data-case-body-grid] { grid-template-columns: 1fr !important; }
+      [data-case-body-grid] > div:nth-child(2) { border-right: none !important; border-top: 1px solid rgba(17,17,17,0.13) !important; padding-left: 2rem !important; }
+
+      /* Case study outcomes: 3 cols → 2 cols */
+      [data-outcomes-grid] { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* Contact section: 2 cols → 1 col */
+      [data-contact-grid] { grid-template-columns: 1fr !important; }
+      [data-contact-grid] > div:nth-child(1) { border-right: none !important; border-bottom: 1px solid rgba(17,17,17,0.13) !important; }
+
+      /* Title band: 2 cols → 1 col */
+      [data-title-band] { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      [data-title-band] > div:nth-child(2) { border-left: none !important; border-top: 1px solid rgba(17,17,17,0.13) !important; padding-left: 2rem !important; }
+
+      /* Footer: reduce gap and responsiveness */
+      [data-footer-grid] { grid-template-columns: 1fr !important; gap: 1.5rem !important; align-items: flex-start !important; }
+      [data-footer-grid] > span:nth-child(2) { text-align: left !important; }
+      [data-footer-grid] > span:nth-child(3) { text-align: left !important; }
+    }
+
+    @media (max-width: 580px) {
+      /* Tight mobile: all single column */
+      [data-secondary-grid] { grid-template-columns: 1fr !important; }
+      [data-secondary-grid] article { border-right: none !important; }
+      [data-secondary-grid] article:not(:last-child) { border-bottom: 1px solid rgba(17,17,17,0.13) !important; }
+
+      [data-outcomes-grid] { grid-template-columns: 1fr !important; }
+      [data-outcomes-grid] > div { border-right: none !important; padding: 1.5rem 0 !important; }
+
+      /* Reduce padding on mobile */
+      [data-masthead] { padding: 2rem 1.25rem !important; }
+      [data-hero-grid] > div:nth-child(2) { padding: 2rem 1.5rem !important; }
+      [data-case-body-grid] > div { padding: 2rem 1.5rem !important; border-right: none !important; }
+
+      /* Form spacing */
+      [data-contact-grid] { padding: 2.5rem 1.5rem !important; }
+      [data-contact-grid] h2 { margin-bottom: 2rem !important; }
+    }
 
     @keyframes marquee {
       from { transform: translateX(0); }
@@ -227,7 +294,7 @@ function WorkPage() {
       </div>
 
       {/* HERO — DUPIXENT */}
-      <article style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'2fr 1fr' }}>
+      <article style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'2fr 1fr' }} data-hero-grid>
         <div style={{ borderRight:'1px solid rgba(17,17,17,0.13)', cursor:'pointer', overflow:'hidden' }} onClick={() => setActiveCase(dupixent)}>
           <img src={dupixent.img} alt={dupixent.brand} style={{ height:'100%', objectFit:'cover', objectPosition:'center 20%' }} />
         </div>
@@ -260,7 +327,7 @@ function WorkPage() {
       </article>
 
       {/* SECONDARY GRID — 4 columns */}
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }} data-secondary-grid>
         {secondary.map((c, i) => (
           <article key={c.id} onClick={() => setActiveCase(c)} style={{ borderRight: i < 3 ? '1px solid rgba(17,17,17,0.13)' : 'none', cursor:'pointer' }}>
             <img src={c.img} alt={c.brand} style={{ height:220, objectFit:'cover' }} />
@@ -282,7 +349,7 @@ function WorkPage() {
       </div>
 
       {/* TERTIARY STRIP — 3 smaller + sidebar */}
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 280px', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 280px', borderBottom:'1px solid rgba(17,17,17,0.13)' }} data-tertiary-grid>
         {tertiary.map((c, i) => (
           <article key={c.id} onClick={() => setActiveCase(c)} style={{ borderRight:'1px solid rgba(17,17,17,0.13)', cursor:'pointer' }}>
             <img src={c.img} alt={c.brand} style={{ height:160, objectFit:'cover' }} />
@@ -310,7 +377,7 @@ function WorkPage() {
       </div>
 
       {/* FOOTER */}
-      <footer style={{ display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)' }}>
+      <footer style={{ display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)' }} data-footer-grid>
         <a href="index.html" style={{ display:'flex', alignItems:'center', gap:8, fontFamily:"'Space Mono',monospace", fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'#111', textDecoration:'none' }}>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
             <rect x="0" y="0" width="5" height="5" fill="#2563eb"/>
@@ -331,7 +398,7 @@ function CaseStudyDetail({ brand, onBack }) {
   return (
     <main style={{ paddingTop: 52 }}>
       {/* Back + masthead */}
-      <div style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', padding:'0.6rem 2rem' }}>
+      <div style={{ borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', padding:'0.6rem 2rem' }} data-title-band>
         <button onClick={onBack} style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(17,17,17,0.42)', background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0 }}>
           ← Back to Work
         </button>
@@ -345,7 +412,7 @@ function CaseStudyDetail({ brand, onBack }) {
       </div>
 
       {/* Title band */}
-      <div style={{ padding:'3.5rem 2rem 2.5rem', borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr 320px', gap:'4rem' }}>
+      <div style={{ padding:'3.5rem 2rem 2.5rem', borderBottom:'1px solid rgba(17,17,17,0.13)', display:'grid', gridTemplateColumns:'1fr 320px', gap:'4rem' }} data-title-band>
         <div>
           <Tag text={brand.category} />
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2rem,4.5vw,4rem)', fontWeight:300, lineHeight:1.05, letterSpacing:'-0.03em', color:'#111', margin:'14px 0 24px' }}>
@@ -353,7 +420,7 @@ function CaseStudyDetail({ brand, onBack }) {
           </h2>
           <p style={{ fontSize:15, color:'rgba(17,17,17,0.55)', lineHeight:1.8, maxWidth:640 }}>{brand.lede}</p>
         </div>
-        <div style={{ paddingLeft:'2rem', borderLeft:'1px solid rgba(17,17,17,0.13)' }}>
+        <div style={{ paddingLeft:'2rem', borderLeft:'1px solid rgba(17,17,17,0.13)' }} data-sidebar>
           {[['Brand', brand.brand],['Role', brand.role],['Period', brand.year],['Category', brand.category]].map(([k,v]) => (
             <div key={k} style={{ paddingBottom:16, marginBottom:16, borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
               <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:6 }}>{k}</div>
@@ -364,7 +431,7 @@ function CaseStudyDetail({ brand, onBack }) {
       </div>
 
       {/* Body content — 2 col */}
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)' }} data-case-body-grid>
         <div style={{ padding:'3rem 2rem', borderRight:'1px solid rgba(17,17,17,0.13)' }}>
           <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:20 }}>The Challenge</div>
           <p style={{ fontSize:14, color:'rgba(17,17,17,0.55)', lineHeight:1.8 }}>
@@ -387,7 +454,7 @@ function CaseStudyDetail({ brand, onBack }) {
       {brand.outcomes && (
         <div style={{ padding:'3rem 2rem', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
           <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8.5, letterSpacing:'0.2em', textTransform:'uppercase', color:'#D32F2F', marginBottom:24 }}>Outcomes</div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:0 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:0 }} data-outcomes-grid>
             {brand.outcomes.map((o,i) => (
               <div key={i} style={{ padding:'1.5rem 2rem 1.5rem 0', borderRight: i < brand.outcomes.length - 1 ? '1px solid rgba(17,17,17,0.13)' : 'none', paddingLeft: i > 0 ? '2rem' : 0 }}>
                 <div style={{ width:3, height:3, background:'#D32F2F', marginBottom:12, display:'inline-block' }}></div>
@@ -406,7 +473,7 @@ function CaseStudyDetail({ brand, onBack }) {
       </div>
 
       {/* Contact Section */}
-      <section style={{ display:'grid', gridTemplateColumns:'1fr 1fr' }}>
+      <section style={{ display:'grid', gridTemplateColumns:'1fr 1fr' }} data-contact-grid>
         {/* Left column - Contact Info */}
         <div style={{ padding:'4rem 2rem', borderRight:'1px solid rgba(17,17,17,0.13)', borderBottom:'1px solid rgba(17,17,17,0.13)' }}>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.8rem,4vw,2.4rem)', fontWeight:300, marginBottom:40, color:'#111' }}>
