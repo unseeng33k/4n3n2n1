@@ -77,6 +77,9 @@
       color: rgba(17,17,17,0.6);
     }
 
+    /* Default desktop grid layouts */
+    [data-contact-grid] { grid-template-columns: 1fr 2fr !important; }
+
     /* Responsive media queries */
     @media (max-width: 968px) {
       /* Hero section: stack image and content */
@@ -159,6 +162,17 @@
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;
         align-items: flex-start;
+      }
+
+      /* Contact section: stack on tablet */
+      [data-contact-grid] {
+        grid-template-columns: 1fr !important;
+      }
+      [data-contact-grid] > div:first-child {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(17,17,17,0.13);
+        padding-bottom: 2rem !important;
+        margin-bottom: 2rem !important;
       }
     }
 
@@ -525,6 +539,8 @@ function WorkPage() {
           ))}
         </div>
       </div>
+
+      <ContactSection />
 
       {/* FOOTER */}
       <footer style={{ display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)' }}>

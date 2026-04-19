@@ -992,7 +992,7 @@ footer {
 [data-approach-pillars] { grid-template-columns: 1fr 1fr; }
 [data-services-list] { grid-template-columns: 1fr 1fr 1fr 1fr; }
 [data-cta-band] { grid-template-columns: 1fr auto; }
-[data-contact-grid] { grid-template-columns: 1fr 1fr; }
+[data-contact-grid] { grid-template-columns: 1fr 2fr; }
 [data-footer-grid] { grid-template-columns: auto auto auto; }
 
 /* ─── RESPONSIVE ─── */

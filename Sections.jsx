@@ -61,12 +61,12 @@ const pillars = [
 function ApproachSection() {
   return (
     <section id="approach">
-      <div style={secStyles.grid2}>
+      <div data-approach-grid style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Brand Strategy:<br/>Transform complexity into <em style={{fontStyle:'italic'}}>clarity.</em></h2>
           <p style={secStyles.body}>20+ years blending strategy, design, and technology to move patients from awareness to action.</p>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr'}}>
+        <div data-approach-pillars style={{display:'grid'}}>
           {pillars.map((p, i) => (
             <div key={i} style={{...secStyles.pillar, borderRight: i%2===0 ? '1px solid rgba(17,17,17,0.13)' : 'none', borderBottom: i<2 ? '1px solid rgba(17,17,17,0.13)' : 'none'}}>
               <MatIcon name={p.icon} />
@@ -92,15 +92,15 @@ const services = [
 function ServicesSection() {
   return (
     <section id="services">
-      <div style={{display:'grid', gridTemplateColumns:'1fr 3fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
-        <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
+      <div data-services-header style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
+        <div className='services-head-left' style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Healthcare Brand<br/>Leadership & <em style={{fontStyle:'italic'}}>Strategy.</em></h2>
         </div>
-        <div style={{...secStyles.padded, display:'flex', alignItems:'center'}}>
+        <div className='services-head-right' style={{...secStyles.padded, display:'flex', alignItems:'center'}}>
           <p style={secStyles.body}>From rare disease positioning to blockbuster brand management, I've led strategy for some of the most impactful medications in the world. Proven track record: revenue growth, margin expansion, category redefinition.</p>
         </div>
       </div>
-      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
+      <div data-services-list style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
         {services.map((s, i) => (
           <div key={i} style={{...secStyles.service, borderRight: i<3 ? '1px solid rgba(17,17,17,0.13)' : 'none'}}>
             <MatIcon name={s.icon} />
@@ -127,7 +127,7 @@ function QuoteSection() {
 function CTABand() {
   return (
     <section style={{background:'#D32F2F', backgroundImage:"linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=85&fit=crop')", backgroundSize:'cover', backgroundPosition:'center', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
-      <div style={{display:'grid', gridTemplateColumns:'1fr auto', alignItems:'center', gap:'4rem', padding:'5rem 2rem'}}>
+      <div data-cta-band style={{display:'grid', alignItems:'center', gap:'4rem', padding:'5rem 2rem'}}>
         <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(3rem,7vw,8rem)', fontWeight:300, lineHeight:0.9, letterSpacing:'-0.03em', color:'#fff'}}>
           Ready to<br/><em style={{fontStyle:'italic', opacity:0.75}}>Elevate</em><br/>Your Brand?
         </h2>
@@ -151,8 +151,8 @@ function ContactSection() {
   ];
   return (
     <section id="contact">
-      <div style={{display:'grid', gridTemplateColumns:'1fr 2fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
-        <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
+      <div data-contact-grid style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
+        <div className='contact-left' style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2.5rem,4.5vw,5rem)', fontWeight:300, lineHeight:0.95, letterSpacing:'-0.02em', marginBottom:32, color:'#111'}}>Let's <em style={{fontStyle:'italic'}}>Connect.</em></h2>
           <p style={{...secStyles.body, marginBottom:40}}>Ready to discuss brand strategy, healthcare market opportunities, or how to scale your organization?</p>
           <div style={{display:'flex', flexDirection:'column', gap:16}}>
@@ -164,7 +164,7 @@ function ContactSection() {
             ))}
           </div>
         </div>
-        <div style={secStyles.padded}>
+        <div className='contact-right' style={{...secStyles.padded}}>
           <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2.5rem,4.5vw,5rem)', fontWeight:300, lineHeight:0.95, letterSpacing:'-0.02em', marginBottom:32, color:'#111'}}>Send an <em style={{fontStyle:'italic'}}>Email.</em></h2>
           {sent ? (
             <p style={{...secStyles.body, color:'#D32F2F'}}>Message sent. I'll be in touch soon.</p>
