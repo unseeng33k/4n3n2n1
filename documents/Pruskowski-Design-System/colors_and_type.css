@@ -1,0 +1,175 @@
+/* ═══════════════════════════════════════════════════════════
+   PRUSKOWSKI DESIGN SYSTEM — Colors & Typography
+   Source: 4n3n2n1.com
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── GOOGLE FONTS ─── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+
+  /* ─── BASE COLOR PALETTE ─── */
+  --color-bg:        #fffafa;   /* Warm off-white — primary background */
+  --color-bg2:       #F5F5F5;   /* Light grey — secondary background */
+  --color-text:      #111111;   /* Near-black — primary text */
+  --color-muted:     rgba(17,17,17,0.42);  /* Dimmed body copy */
+  --color-rule:      rgba(17,17,17,0.13);  /* Hairline borders */
+  --color-red:       #D32F2F;   /* Brand red (called "orange" in src) — primary accent */
+  --color-red-light: #E57373;   /* Lighter red — hover states */
+  --color-white:     #ffffff;
+
+  /* ─── LOGO QUAD COLORS ─── */
+  --color-logo-blue:   #2563eb;
+  --color-logo-red:    #dc2626;
+  --color-logo-yellow: #eab308;
+  --color-logo-green:  #16a34a;
+
+  /* ─── SEMANTIC COLOR ALIASES ─── */
+  --bg:         var(--color-bg);
+  --bg2:        var(--color-bg2);
+  --text:       var(--color-text);
+  --muted:      var(--color-muted);
+  --rule:       var(--color-rule);
+  --accent:     var(--color-red);
+  --accent-hover: var(--color-red-light);
+
+  /* ─── TYPOGRAPHY: FONT FAMILIES ─── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+    /* Use for: H1, H2, section headings, quotes, large italics */
+  --font-body:    'Space Grotesk', system-ui, sans-serif;
+    /* Use for: body copy, descriptions, form inputs */
+  --font-mono:    'Space Mono', 'Courier New', monospace;
+    /* Use for: labels, tags, nav links, buttons, captions, metadata */
+  --font-script:  'Great Vibes', cursive;
+    /* Use for: decorative accents only */
+  --font-icons:   'Material Symbols Outlined';
+    /* Use for: icons via ligature text content */
+
+  /* ─── TYPOGRAPHY: SCALE ─── */
+  --text-hero:    clamp(5rem, 12.5vw, 13rem);   /* Hero H1 */
+  --text-h1:      clamp(3rem, 7vw, 8rem);        /* Page headings */
+  --text-h2:      clamp(2rem, 3.5vw, 3.5rem);    /* Section headings */
+  --text-h3:      1.7rem;                         /* Sub-headings (Cormorant) */
+  --text-h4:      1.6rem;                         /* Card titles */
+  --text-quote:   clamp(1.5rem, 4vw, 2.5rem);    /* Pull quotes */
+  --text-body:    0.88rem;                        /* Standard body */
+  --text-small:   0.83rem;                        /* Dense body */
+  --text-label:   0.6rem;                         /* Mono labels / section tags */
+  --text-mono-sm: 0.65rem;                        /* Buttons, nav links */
+  --text-mono-xs: 0.58rem;                        /* Micro-labels */
+
+  /* ─── TYPOGRAPHY: WEIGHTS ─── */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ─── TYPOGRAPHY: LETTER-SPACING ─── */
+  --tracking-tight:  -0.03em;  /* Hero display */
+  --tracking-normal: -0.02em;  /* Section headings */
+  --tracking-mono:    0.12em;  /* Nav logo, footer */
+  --tracking-label:   0.18em;  /* Form labels */
+  --tracking-caps:    0.20em;  /* Section tags, marquee */
+
+  /* ─── TYPOGRAPHY: LINE-HEIGHT ─── */
+  --leading-display: 0.9;      /* Hero headline */
+  --leading-heading: 1.05;     /* H2 sections */
+  --leading-sub:     1.1;      /* H3 pillars */
+  --leading-body:    1.75;     /* Body copy */
+  --leading-tight:   1.5;      /* Compact body */
+
+  /* ─── SPACING ─── */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   2rem;
+  --space-lg:   3.5rem;
+  --space-xl:   5rem;
+  --space-2xl:  8rem;
+
+  /* ─── LAYOUT ─── */
+  --nav-height:    52px;
+  --border:        1px solid var(--rule);
+  --radius-sm:     0.5rem;     /* Used on article/thought leadership images only */
+  --radius-none:   0;          /* Default — no border radius on cards/buttons */
+
+  /* ─── TRANSITIONS ─── */
+  --ease-default:  0.15s ease;
+  --ease-reveal:   0.6s ease;
+
+  /* ─── ICON SETTINGS ─── */
+  --icon-variation: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ─── SEMANTIC ELEMENT STYLES ─── */
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-normal);
+  color: var(--text);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-sub);
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+
+.label, .tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+em, .italic-accent {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ─── ICON UTILITY ─── */
+.icon {
+  font-family: var(--font-icons);
+  font-variation-settings: var(--icon-variation);
+  font-size: 22px;
+  line-height: 1;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  color: var(--accent);
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fffafa; }
+.marquee-wrap { border-bottom: 1px solid rgba(17,17,17,0.13); padding: 14px 0; overflow: hidden; }
+.marquee-track { display: flex; animation: marquee 20s linear infinite; width: max-content; }
+.item { display: flex; align-items: center; gap: 24px; padding: 0 48px; font-family: 'Space Mono', monospace; font-size: 9.6px; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(17,17,17,0.42); white-space: nowrap; }
+.dot { width: 3px; height: 3px; background: #D32F2F; flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.clients-strip { overflow: hidden; border-bottom: 1px solid rgba(17,17,17,0.13); padding: 24px 0; }
+.clients-track { display: flex; animation: marquee-rev 18s linear infinite; width: max-content; }
+@keyframes marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.client { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(17,17,17,0.13); white-space: nowrap; padding: 0 48px; }
+</style></head><body>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="item"><span class="dot"></span>Strategic Insight</div>
+    <div class="item"><span class="dot"></span>Omnichannel Design</div>
+    <div class="item"><span class="dot"></span>Patient Engagement</div>
+    <div class="item"><span class="dot"></span>Rare Disease Expertise</div>
+    <div class="item"><span class="dot"></span>Systems Thinking</div>
+    <div class="item"><span class="dot"></span>DTC Strategy</div>
+    <div class="item"><span class="dot"></span>Revenue Growth</div>
+    <div class="item"><span class="dot"></span>Brand Narrative</div>
+    <div class="item"><span class="dot"></span>Strategic Insight</div>
+    <div class="item"><span class="dot"></span>Omnichannel Design</div>
+    <div class="item"><span class="dot"></span>Patient Engagement</div>
+    <div class="item"><span class="dot"></span>Rare Disease Expertise</div>
+    <div class="item"><span class="dot"></span>Systems Thinking</div>
+    <div class="item"><span class="dot"></span>DTC Strategy</div>
+    <div class="item"><span class="dot"></span>Revenue Growth</div>
+    <div class="item"><span class="dot"></span>Brand Narrative</div>
+  </div>
+</div>
+<div class="clients-strip">
+  <div class="clients-track">
+    <span class="client">DUPIXENT</span><span class="client">BEYFORTUS</span><span class="client">NARCAN</span><span class="client">ENTRESTO</span><span class="client">AIMOVIG</span><span class="client">KEYTRUDA</span><span class="client">JARDIANCE</span><span class="client">SPIRIVA</span>
+    <span class="client">DUPIXENT</span><span class="client">BEYFORTUS</span><span class="client">NARCAN</span><span class="client">ENTRESTO</span><span class="client">AIMOVIG</span><span class="client">KEYTRUDA</span><span class="client">JARDIANCE</span><span class="client">SPIRIVA</span>
+  </div>
+</div>
+</body></html>

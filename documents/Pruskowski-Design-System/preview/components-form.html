@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fffafa; padding: 28px; }
+.form-row { display: grid; grid-template-columns: 100px 1fr; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(17,17,17,0.13); }
+.form-row:first-child { padding-top: 0; }
+.label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #D32F2F; }
+.input { background: transparent; border: none; outline: none; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500; color: #111; width: 100%; }
+.placeholder { color: rgba(17,17,17,0.2); font-weight: 400; }
+.contact-row { display: grid; grid-template-columns: 80px 1fr; gap: 16px; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid rgba(17,17,17,0.13); margin-bottom: 12px; }
+.contact-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #D32F2F; }
+.contact-val { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500; color: #111; }
+</style></head><body>
+<div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">mpruskowski@gmail.com</div></div>
+<div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">+1 (908) 917-0754</div></div>
+<div class="contact-row" style="border:none;margin:0;padding:0;padding-bottom:16px;"><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/MpruskowskI</div></div>
+<div style="border-top:1px solid rgba(17,17,17,0.13);padding-top:16px;">
+  <div class="form-row"><div class="label">Name</div><div class="input placeholder">Your name</div></div>
+  <div class="form-row"><div class="label">Email</div><div class="input placeholder">your@email.com</div></div>
+  <div class="form-row" style="border:none;"><div class="label">Message</div><div class="input placeholder">Let's discuss how we can work together...</div></div>
+</div>
+</body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fffafa; font-family: 'Space Mono', monospace; padding: 20px; }
+.label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(17,17,17,0.4); margin-bottom: 16px; }
+.row { display: flex; gap: 12px; align-items: flex-start; }
+.logomark { display: grid; grid-template-columns: 1fr 1fr; width: 80px; height: 80px; flex-shrink: 0; }
+.q { }
+.swatches { display: flex; gap: 10px; flex: 1; }
+.swatch { flex: 1; }
+.chip { height: 80px; }
+.name { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(17,17,17,0.4); margin-top: 6px; }
+.val { font-size: 9px; color: rgba(17,17,17,0.3); margin-top: 2px; }
+</style></head><body>
+<div class="label">Logo Quad — Four-Color Mark</div>
+<div class="row">
+  <div class="logomark">
+    <div class="q" style="background:#2563eb;"></div>
+    <div class="q" style="background:#dc2626;"></div>
+    <div class="q" style="background:#eab308;"></div>
+    <div class="q" style="background:#16a34a;"></div>
+  </div>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:#2563eb;"></div><div class="name">Blue</div><div class="val">#2563eb</div></div>
+    <div class="swatch"><div class="chip" style="background:#dc2626;"></div><div class="name">Red</div><div class="val">#dc2626</div></div>
+    <div class="swatch"><div class="chip" style="background:#eab308;"></div><div class="name">Yellow</div><div class="val">#eab308</div></div>
+    <div class="swatch"><div class="chip" style="background:#16a34a;"></div><div class="name">Green</div><div class="val">#16a34a</div></div>
+  </div>
+</div>
+</body></html>

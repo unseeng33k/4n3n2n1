@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fffafa; padding: 20px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { border: 1px solid rgba(17,17,17,0.13); overflow: hidden; transition: border-color 0.2s; }
+.card:hover { border-color: #D32F2F; }
+.img { width: 100%; height: 120px; background: #F5F5F5; display: flex; align-items: center; justify-content: center; }
+.img-label { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(17,17,17,0.3); letter-spacing: 0.1em; }
+.content { padding: 20px 18px; }
+.category { font-family: 'Space Mono', monospace; font-size: 8.8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #D32F2F; margin-bottom: 10px; }
+.title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; line-height: 1.2; color: #111; margin-bottom: 10px; }
+.desc { font-family: 'Space Grotesk', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(17,17,17,0.42); }
+</style></head><body>
+<div class="grid">
+  <div class="card">
+    <div class="img"><span class="img-label">Project Image</span></div>
+    <div class="content">
+      <div class="category">Brand Strategy</div>
+      <div class="title">Healthcare Brand Transformation</div>
+      <div class="desc">Comprehensive rebrand strategy including visual identity, messaging framework, and multi-channel rollout.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="img"><span class="img-label">Project Image</span></div>
+    <div class="content">
+      <div class="category">Digital Product</div>
+      <div class="title">Omnichannel Engagement Platform</div>
+      <div class="desc">Digital platform connecting customer touchpoints across web, mobile, and in-store experiences.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="img"><span class="img-label">Project Image</span></div>
+    <div class="content">
+      <div class="category">Systems Design</div>
+      <div class="title">Revenue Growth Systems</div>
+      <div class="desc">Data-driven systems to optimize customer lifecycle value and increase revenue per user by 40%.</div>
+    </div>
+  </div>
+</div>
+</body></html>
