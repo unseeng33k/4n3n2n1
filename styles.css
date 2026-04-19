@@ -1002,6 +1002,9 @@ footer {
   [data-contact-grid],
   .tl-grid { grid-template-columns: 1fr; }
 
+  .tl-grid > :nth-child(4) { order: 5; }
+  .tl-grid > :nth-child(5) { order: 4; }
+
   .approach-left,
   .services-head-left,
   .contact-left {

@@ -230,6 +230,45 @@
       [data-layout="tertiary-sidebar"] {
         display: none;
       }
+
+      /* Handle inline grid styles for mobile */
+      /* Hero article: 2fr 1fr → 1fr */
+      article[style*="gridTemplateColumns:'2fr 1fr'"] {
+        grid-template-columns: 1fr !important;
+      }
+      article[style*="gridTemplateColumns:'2fr 1fr'"] > div:first-child {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(17,17,17,0.13) !important;
+      }
+
+      /* 4-column grids → 1 column */
+      div[style*="gridTemplateColumns:'1fr 1fr 1fr 1fr'"],
+      div[style*="gridTemplateColumns:'1fr 1fr 1fr 280px'"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 2-column grids → 1 column */
+      div[style*="gridTemplateColumns:'1fr 1fr'"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Content + sidebar → stack */
+      div[style*="gridTemplateColumns:'1fr 320px'"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+
+      /* 3-column repeat → 1 column */
+      div[style*="gridTemplateColumns:'repeat(3,1fr)'"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Footer - single column */
+      footer[style*="gridTemplateColumns:'320px 1fr auto'"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        text-align: center;
+      }
     }
   </style>
   <script defer src="https://cdn.vercel-analytics.com/v1/script.js"></script>
