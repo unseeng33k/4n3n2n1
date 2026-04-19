@@ -40,7 +40,7 @@ function BrandStrip() {
   const doubled = [...brands, ...brands];
   return (
     <div style={{borderBottom:'1px solid rgba(17,17,17,0.13)', padding:'2rem 0', overflow:'hidden'}}>
-      <div className="marquee-animated" style={{display:'flex', width:'max-content'}}>
+      <div style={{display:'flex', animation:'marqueeRev 24s linear infinite', width:'max-content'}}>
         {doubled.map((b, i) => (
           <span key={i} style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:'clamp(1rem,2vw,1.4rem)',fontWeight:700,letterSpacing:'0.1em',textTransform:'uppercase',color:'rgba(17,17,17,0.13)',whiteSpace:'nowrap',padding:'0 3.5rem'}}>
             {b}
@@ -61,15 +61,12 @@ const pillars = [
 function ApproachSection() {
   return (
     <section id="approach">
-      <div className="section-row">
-        <span className="section-tag">01 &mdash; Approach</span>
-      </div>
-      <div style={secStyles.grid2} data-approach-grid>
+      <div style={secStyles.grid2}>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Brand Strategy:<br/>Transform complexity into <em style={{fontStyle:'italic'}}>clarity.</em></h2>
           <p style={secStyles.body}>20+ years blending strategy, design, and technology to move patients from awareness to action.</p>
         </div>
-        <div style={{display:'grid'}} data-approach-pillars>
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr'}}>
           {pillars.map((p, i) => (
             <div key={i} style={{...secStyles.pillar, borderRight: i%2===0 ? '1px solid rgba(17,17,17,0.13)' : 'none', borderBottom: i<2 ? '1px solid rgba(17,17,17,0.13)' : 'none'}}>
               <MatIcon name={p.icon} />
@@ -95,10 +92,7 @@ const services = [
 function ServicesSection() {
   return (
     <section id="services">
-      <div className="section-row">
-        <span className="section-tag">02 &mdash; Services</span>
-      </div>
-      <div style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}} data-services-header>
+      <div style={{display:'grid', gridTemplateColumns:'1fr 3fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={secStyles.h2}>Healthcare Brand<br/>Leadership & <em style={{fontStyle:'italic'}}>Strategy.</em></h2>
         </div>
@@ -106,7 +100,7 @@ function ServicesSection() {
           <p style={secStyles.body}>From rare disease positioning to blockbuster brand management, I've led strategy for some of the most impactful medications in the world. Proven track record: revenue growth, margin expansion, category redefinition.</p>
         </div>
       </div>
-      <div style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}} data-services-list>
+      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
         {services.map((s, i) => (
           <div key={i} style={{...secStyles.service, borderRight: i<3 ? '1px solid rgba(17,17,17,0.13)' : 'none'}}>
             <MatIcon name={s.icon} />
@@ -133,7 +127,7 @@ function QuoteSection() {
 function CTABand() {
   return (
     <section style={{background:'#D32F2F', backgroundImage:"linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=85&fit=crop')", backgroundSize:'cover', backgroundPosition:'center', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
-      <div style={{display:'grid', alignItems:'center', gap:'4rem', padding:'5rem 2rem'}} data-cta-band>
+      <div style={{display:'grid', gridTemplateColumns:'1fr auto', alignItems:'center', gap:'4rem', padding:'5rem 2rem'}}>
         <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(3rem,7vw,8rem)', fontWeight:300, lineHeight:0.9, letterSpacing:'-0.03em', color:'#fff'}}>
           Ready to<br/><em style={{fontStyle:'italic', opacity:0.75}}>Elevate</em><br/>Your Brand?
         </h2>
@@ -148,11 +142,6 @@ function CTABand() {
 
 function ContactSection() {
   const [sent, setSent] = React.useState(false);
-  const sectionHeader = (
-    <div className="section-row">
-      <span className="section-tag">04 &mdash; Contact</span>
-    </div>
-  );
   const contacts = [
     ['Email','mpruskowski@gmail.com','mailto:mpruskowski@gmail.com'],
     ['Phone','+1 (908) 917-0754','tel:+19089170754'],
@@ -162,8 +151,7 @@ function ContactSection() {
   ];
   return (
     <section id="contact">
-      {sectionHeader}
-      <div style={{display:'grid', borderBottom:'1px solid rgba(17,17,17,0.13)'}} data-contact-grid>
+      <div style={{display:'grid', gridTemplateColumns:'1fr 2fr', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
         <div style={{...secStyles.padded, borderRight:'1px solid rgba(17,17,17,0.13)'}}>
           <h2 style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2.5rem,4.5vw,5rem)', fontWeight:300, lineHeight:0.95, letterSpacing:'-0.02em', marginBottom:32, color:'#111'}}>Let's <em style={{fontStyle:'italic'}}>Connect.</em></h2>
           <p style={{...secStyles.body, marginBottom:40}}>Ready to discuss brand strategy, healthcare market opportunities, or how to scale your organization?</p>
@@ -205,7 +193,7 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer style={{display:'grid', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)'}} data-footer-grid>
+    <footer style={{display:'grid', gridTemplateColumns:'320px 1fr auto', alignItems:'center', gap:32, padding:'1.25rem 2rem', borderTop:'1px solid rgba(17,17,17,0.13)'}}>
       <a href="#" style={{display:'flex', alignItems:'center', gap:8, fontFamily:"'Space Mono',monospace", fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'#111', textDecoration:'none'}}>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="#111"><rect width="10" height="10"/></svg>
         Michael Pruskowski
@@ -218,7 +206,7 @@ function Footer() {
 
 const secStyles = {
   padded: { padding: '3.5rem 2rem' },
-  grid2: { display: 'grid', borderBottom: '1px solid rgba(17,17,17,0.13)' },
+  grid2: { display: 'grid', gridTemplateColumns: '1fr 2fr', borderBottom: '1px solid rgba(17,17,17,0.13)' },
   h2: { fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2rem,3.5vw,3.5rem)', fontWeight:300, lineHeight:1.05, letterSpacing:'-0.02em', color:'#111', marginBottom:16 },
   h3: { fontFamily:"'Cormorant Garamond',serif", fontSize:28, fontWeight:300, lineHeight:1.1, letterSpacing:'-0.01em', marginBottom:14, color:'#111' },
   body: { fontSize:14, color:'rgba(17,17,17,0.42)', lineHeight:1.75 },
