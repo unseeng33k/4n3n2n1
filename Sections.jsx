@@ -116,7 +116,7 @@ function ServicesSection() {
 
 function QuoteSection() {
   return (
-    <section className="parallax-animated" style={{padding:'8rem 2rem', background:'rgba(0,0,0,0.03)', borderBottom:'1px solid rgba(17,17,17,0.13)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <section style={{padding:'8rem 2rem', background:'rgba(0,0,0,0.03)', borderBottom:'1px solid rgba(17,17,17,0.13)', display:'flex', alignItems:'center', justifyContent:'center'}}>
       <p style={{fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.5rem,4vw,2.5rem)', fontWeight:400, lineHeight:1.4, color:'#111', fontStyle:'italic', textAlign:'center', maxWidth:800}}>
         "The work isn't done when it ships. It's done when someone, somewhere, quietly trusts it."
       </p>
