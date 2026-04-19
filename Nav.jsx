@@ -30,7 +30,7 @@ function Nav({ currentPage = 'home' }) {
       </nav>
       {menuOpen && (
         <div style={navStyles.menu}>
-          {[['/#approach','Approach'],['/work.html','Work'],['/#services','Services'],['/#thought-leadership','Thought Leadership'],['/#contact',"Let's Connect"]].map(([href, label]) => (
+          {[['/#approach','Approach'],['/Work.html','Work'],['/#services','Services'],['/#thought-leadership','Thought Leadership'],['/#contact',"Let's Connect"]].map(([href, label]) => (
             <a key={href} href={href} style={navStyles.menuLink}
                onClick={() => setMenuOpen(false)}
                onMouseEnter={e => e.target.style.color='#111'}
