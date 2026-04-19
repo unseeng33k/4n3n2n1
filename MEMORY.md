@@ -1,0 +1,2 @@
+- [Vercel tracking on all pages and actions](feedback_vercel_tracking_required.md) — Every page and high-value action needs Vercel Analytics tracking code
+- [Design system reference requirement](feedback_design_system_reference.md) — Every UI/UX update must reference `/documents/Pruskowski-Design-System`
