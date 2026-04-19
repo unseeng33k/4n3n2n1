@@ -203,12 +203,16 @@
 
       /* Secondary card sizing */
       [data-layout="secondary-4col"] img {
-        height: 180px !important;
+        height: auto !important;
+        aspect-ratio: 1;
+        object-fit: cover;
       }
 
       /* Tertiary images */
       [data-layout="tertiary-4col"] img {
-        height: 140px !important;
+        height: auto !important;
+        aspect-ratio: 1;
+        object-fit: cover;
       }
 
       /* Case study hero image height */
@@ -269,6 +273,23 @@
         gap: 1rem !important;
         text-align: center;
       }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small screens - ensure everything stacks */
+      [data-layout="secondary-4col"],
+      [data-layout="tertiary-4col"],
+      [data-layout="case-title-2col"],
+      [data-layout="case-body-2col"],
+      [data-layout="outcomes-3col"],
+      [data-layout="footer-3col"],
+      div[style*="gridTemplateColumns"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Ensure consistent spacing on small screens */
+      main { padding: 1rem !important; }
+      [data-layout*="padding"] { padding: 1rem !important; }
     }
   </style>
   <script defer src="https://cdn.vercel-analytics.com/v1/script.js"></script>
