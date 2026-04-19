@@ -331,14 +331,22 @@ nav {
 }
 
 @keyframes marqueeRev {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes parallax {
   0% { transform: translateY(0); opacity: 0.8; }
   50% { opacity: 1; }
   100% { transform: translateY(-30px); opacity: 0.8; }
+}
+
+.marquee-animated {
+  animation: marqueeRev 24s linear infinite;
+}
+
+.parallax-animated {
+  animation: parallax 6s ease-in-out infinite;
 }
 
 /* ─── SECTION LABEL ─── */
