@@ -213,7 +213,7 @@
         Your Brand?
       </h2>
       <div class="cta-actions reveal d2">
-        <a href="#contact" class="btn" style="background:#fff;border-color:#fff;color:var(--orange);">Let's Talk &rarr;</a>
+        <a href="#contact" class="btn" style="background:#fff;border-color:#fff;color:var(--orange);" onclick="window.va?.track('CTA Hero - Let\\'s Talk')">Let's Talk &rarr;</a>
         <a href="#approach" class="btn btn-white">See Capabilities</a>
       </div>
     </div>
@@ -396,7 +396,7 @@ function ApproachSection() {
               <div style={secStyles.pillarNum}>{p.num}</div>
               <h3 style={secStyles.h3}>{p.title}</h3>
               <p style={secStyles.smallBody}>{p.desc}</p>
-              <a href="#contact" style={secStyles.pillarLink}>Explore →</a>
+              <a href="#contact" style={secStyles.pillarLink} onclick="window.va?.track('CTA Services Explore')">Explore →</a>
             </div>
           ))}
         </div>
@@ -458,7 +458,7 @@ function CTABand() {
           Ready to<br/><em style={{fontStyle:'italic', opacity:0.75}}>Elevate</em><br/>Your Brand?
         </h2>
         <div style={{display:'flex', flexDirection:'column', gap:12, minWidth:200}}>
-          <a href="#contact" style={{...secStyles.btn, background:'#fff', borderColor:'#fff', color:'#D32F2F'}}>Let's Talk →</a>
+          <a href="#contact" style={{...secStyles.btn, background:'#fff', borderColor:'#fff', color:'#D32F2F'}} onclick="window.va?.track('CTA Thought Leadership - Let\\'s Talk')">Let's Talk →</a>
           <a href="#approach" style={{...secStyles.btn, borderColor:'rgba(255,255,255,0.4)', color:'#fff'}}>See Capabilities</a>
         </div>
       </div>
@@ -501,7 +501,7 @@ function ContactSection() {
           {sent ? (
             <p style={{...secStyles.body, color:'#D32F2F'}}>Message sent. I'll be in touch soon.</p>
           ) : (
-            <form onSubmit={e => { e.preventDefault(); setSent(true); }}>
+            <form onSubmit={e => { e.preventDefault(); window.va?.track('Contact Form Submitted'); setSent(true); }}>
               {[['Name','text','Your name'],['Email','email','your@email.com']].map(([label, type, ph]) => (
                 <div key={label} style={{display:'grid', gridTemplateColumns:'100px 1fr', alignItems:'baseline', gap:32, padding:'1.4rem 0', borderBottom:'1px solid rgba(17,17,17,0.13)'}}>
                   <label style={secStyles.pillarNum}>{label}</label>
